@@ -1,0 +1,47 @@
+
+
+import os
+from tkinter import *
+import tkinter as tk
+import sqlite3
+
+class ParentWindow(Frame):
+    def __init__(self, master, *args, **kwargs):
+        Frame.__init__(self, master, *args, **kwargs)
+            
+        def load_gui(self):
+
+            def center_window(self, w, h): 
+                screen_width = self.master.winfo_screenwidth()
+                screen_height = self.master.winfo_screenheight()
+                x = int((screen_width/2) - (w/2))
+                y = int((screen_height/2) - (h/2))
+                centerGeo = self.master.geometry('{}x{}+{}+{}'.format(w, h, x, y))
+                return centerGeo
+
+        self.master = master
+        self.master.minsize(450,150)
+        self.master.maxsize(450,150)
+        self.master.title("Check files")
+        self.master.configure(bg="#F0F0F0")
+
+
+        self.entry1 = tk.Entry(self.master,width=30,text='')
+        self.entry1.grid(row=2,column=1,rowspan=1,columnspan=10,padx=(85,0),pady=(10,0),sticky=W)
+        self.entry2 = tk.Entry(self.master,width=30,text='')
+        self.entry2.grid(row=4,column=1,rowspan=1,columnspan=10,padx=(85,0),pady=(10,0),sticky=W)
+        
+        self.btn_browse1 = tk.Button(self.master,width=15,height=1,text='Browse...')
+        self.btn_browse1.grid(row=2,column=0,padx=(25,0),pady=(10,0),sticky=N+W)
+        self.btn_browse2 = tk.Button(self.master,width=15,height=1,text='Browse...')
+        self.btn_browse2.grid(row=4,column=0,padx=(25,0),pady=(10,0),sticky=N+W)
+        self.btn_ckfile = tk.Button(self.master,width=15,height=2,text='Check for files...')
+        self.btn_ckfile.grid(row=6,column=0,padx=(25,0),pady=(10,0),sticky=N+W)
+        self.btn_close = tk.Button(self.master,width=15,height=2,text='Close Program')
+        self.btn_close.grid(row=6,column=10,padx=(25,0),pady=(10,0),sticky=E+W)
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    App = ParentWindow(root)
+    root.mainloop()
