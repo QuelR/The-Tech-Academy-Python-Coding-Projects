@@ -1,0 +1,39 @@
+
+import sqlite3
+import os
+
+conn = sqlite3.connect('drillpg103.db')
+
+with conn:
+    cur = conn.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS tbl_files( \
+        ID INTEGER PRIMARY KEY AUTOINCREMENT, \
+        col_fname TEXT, \
+        col_txtype STRING \
+        )")
+    conn.commit()
+
+with conn:
+    cur = conn.cursor()
+    cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
+                ('information.docx', 'docx'))
+    cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
+                ['Hello.txt','txt'])
+    cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
+                ['myImage.png','png'])
+    cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
+                ['myMovie.mpg','mpg'])
+    cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
+                ['World.txt','txt'])
+    cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
+                ['data.pdf','pdf'])    
+    cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
+                ['myPhoto.jpg','jpg'])
+    conn.commit()
+
+cur.execute('SELECT col_fname FROM tbl_files WHERE col_fname LIKE "%txt"')
+rows = cur.fetchall()
+for row in rows:
+        print(row)
+conn.close()
+
