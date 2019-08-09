@@ -12,7 +12,7 @@ with conn:
         col_txtype STRING \
         )")
     conn.commit()
-
+    
 with conn:
     cur = conn.cursor()
     cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
@@ -29,11 +29,19 @@ with conn:
                 ['data.pdf','pdf'])    
     cur.execute("INSERT INTO tbl_files(col_fname, col_txtype) VALUES (?,?)", \
                 ['myPhoto.jpg','jpg'])
-    conn.commit()
 
-cur.execute('SELECT col_fname FROM tbl_files WHERE col_fname LIKE "%txt"')
+def txt():
+        dn = "C:\PyProjects\Drill pg 122"
+        for filename in os.listdir(dn):
+                if filename.endswith(".txt"):
+                        print(os.path.join(dn, filename))
+                        continue
+                else:
+                        continue
+
 rows = cur.fetchall()
+conn.commit()
 for row in rows:
         print(row)
 conn.close()
-
+txt()
