@@ -1,0 +1,45 @@
+
+import tkinter
+from tkinter.filedialog import *
+import os
+from tkinter import *
+import tkinter as tk
+import sqlite3
+
+# Frame is the Tkinter frame class that our own class will inherit from
+class ParentWindow(Frame):
+    def __init__(self, master, *args, **kwargs):
+        Frame.__init__(self, master, *args, **kwargs)
+            
+        self.master = master
+        self.master.minsize(450,100) #(Height, Width)
+        self.master.maxsize(450,100)
+        self.master.title("Find files")
+        self.master.configure(bg="#F0F0F0")
+
+        self.entry1 = tk.Entry(self.master,width=30,text='')
+        self.entry1.grid(row=2,column=1,rowspan=1,columnspan=10,padx=(85,0),pady=(10,0),sticky=W)
+
+        
+        self.btn_browse1 = tk.Button(self.master,width=20,height=1,text='Choose Path or Browse', command=self.open_file)
+        self.btn_browse1.grid(row=2,column=0,padx=(25,0),pady=(10,0),sticky=N+W)
+
+        self.btn_close = tk.Button(self.master,width=15,height=1,text='Close Program', command=self.close_program)
+        self.btn_close.grid(row=6,column=10,padx=(25,0),pady=(10,0),sticky=E+W)
+
+
+    def open_file(self):
+        name = askdirectory(parent=self, title='Choose a file', initialdir='C:\\')
+        print(name)
+        
+
+    def close_program(self):
+        name = self.master.destroy()
+        os._exit(0)
+
+        
+if __name__ == "__main__":
+    root = tk.Tk()
+
+    App = ParentWindow(root)
+    root.mainloop()
